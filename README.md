@@ -11,4 +11,5 @@ This grants purpose is to support new development, maintenance, and upkeep of th
 ### zkIgnite Bridge Funding
 A one time grant for high impact and important projects coming out of zkIgnite. This grant is intended to support the team until they can seek external funding via accelerators or venture capital.
 
-
+## How to Apply?
+For all open grants, please see the Project Board. Under each of these issues, you can create a pull request with your proposal completed. Please see the proposal template to ensure that all the required information is included in you application
