@@ -1,5 +1,5 @@
 # Launch-Grants
-Inthe launch Grants Program, Mina Foundation will fund different grant categories that exist to manage and support various needs in the Mina ecosystem
+In the launch Grants Program, Mina Foundation will fund different grant categories that exist to manage and support various needs in the Mina ecosystem
 
 ## Type of Grants
 ###Ecosystem Advancement | Requests for Proposals (RFPs)
