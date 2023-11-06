@@ -12,4 +12,7 @@ This grants purpose is to support new development, maintenance, and upkeep of th
 A one time grant for high impact and important projects coming out of zkIgnite. This grant is intended to support the team until they can seek external funding via accelerators or venture capital.
 
 ## How to Apply?
-For all open grants, please see the Project Board. Under each of these issues, you can create a pull request with your proposal completed. Please see the proposal template to ensure that all the required information is included in you application
+For all open grants, please see the Project Board. Under each of these issues, you can create a pull request with your proposal completed. Please see the [proposal template](https://github.com/MinaFoundation/Launch-Grants/blob/main/Templates.md)  to ensure that all the required information is included in you application
+
+## Questions/Discussion
+Please see the dedicated Slack Channel (TBD) for more infromation
