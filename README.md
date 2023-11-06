@@ -2,7 +2,7 @@
 In the launch Grants Program, Mina Foundation will fund different grant categories that exist to manage and support various needs in the Mina ecosystem
 
 ## Type of Grants
-###Ecosystem Advancement | Requests for Proposals (RFPs)
+### Ecosystem Advancement | Requests for Proposals (RFPs)
 RFPs are propsals written by the Mina Foundation with a specific scope defined. In these proposals, there are clear deliverables and milestones which we open up to the community to apply for. If your proposal is selected, you will be eligible to receive a Mina Foundation grant dependent on milestone delivery. There are proposal templates provided which should be used to capture all relevant information.
 
 ### Public Goods 
