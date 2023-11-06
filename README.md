@@ -1,4 +1,4 @@
-# Launch-Grants
+# :cyclone: Launch-Grants :cyclone:
 In the launch Grants Program, Mina Foundation will fund different grant categories that exist to manage and support various needs in the Mina ecosystem
 
 ## Type of Grants
