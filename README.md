@@ -8,9 +8,6 @@ RFPs are propsals written by the Mina Foundation with a specific scope defined. 
 ### Public Goods 
 This grants purpose is to support new development, maintenance, and upkeep of the Mina Protocol.
 
-### zkIgnite Bridge Funding
-A one time grant for high impact and important projects coming out of zkIgnite. This grant is intended to support the team until they can seek external funding via accelerators or venture capital.
-
 ## How to Apply?
 For all open grants, please see the [Project Board](https://github.com/orgs/MinaFoundation/projects/7). Under each of these issues, you can add a comment with your with your completed proposal. Please see the [proposal template](https://github.com/MinaFoundation/Launch-Grants/blob/main/Templates.md)  to ensure that all the required information is included in you application
 
