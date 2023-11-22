@@ -1,15 +1,22 @@
-# :cyclone: Launch-Grants :cyclone:
-In the Launch Grants Program, Mina Foundation will fund different grant categories that exist to manage and support various needs in the Mina ecosystem
+# Launch-Grants Program 🚀
 
-## Type of Grants
-### Ecosystem Advancement | Requests for Proposals (RFPs)
-RFPs are propsals written by the Mina Foundation with a specific scope defined. In these proposals, there are clear deliverables and milestones which we open up to the community to apply for. If your proposal is selected, you will be eligible to receive a Mina Foundation grant dependent on milestone delivery. There are proposal templates provided which should be used to capture all relevant information.
+Welcome to the Launch Grants Program by Mina Foundation! The project's mission is to empower and support innovation within the Mina ecosystem.
 
-### Public Goods 
-This grants purpose is to support new development, maintenance, and upkeep of the Mina Protocol.
+## How It Works
+Embark on a journey of contribution and innovation with these simple steps:
+
+1. 🍴 **Fork and Propose:** Start by forking this repository. In the [RFCs](./RFCs/) directory, create a new markdown document using our [RFC template](./RFCs/rfc-0001-template.md) to share your innovative ideas.
+2. 💬 **Pull Request for Feedback:** Commit your RFC document to your fork and open a pull request here. This is where your ideas get discussed and refined with community inputs.
+3. 🎨 **From RFC to RFP:** Once an RFC is finalized, it evolves into an RFP (Request for Proposal) stage where we issue grants for fulfilling the RFC objectives.
+4. 🔄 **Creation and Delivery:** This cycle continues until there exists tangible results — be it software, designs, or other forms of output.
+
+## Types of Grant Tracks
+Your innovative solutions could receive grants from Mina Foundation, subject to milestone achievements.
+- 🌐 **Ecosystem Advancement:** Here, we focus on proposals originating from RFCs, covering specific scopes and deliverables.
+- 🌍 **Public Goods:** Aimed at supporting new developments, maintenance, or enhancement of Mina Protocol.
 
 ## How to Apply?
-For all open grants, please see the [Project Board](https://github.com/orgs/MinaFoundation/projects/7). Under each of these issues, you can add a comment with your with your completed proposal. Please see the [proposal template](https://github.com/MinaFoundation/Launch-Grants/blob/main/Templates.md)  to ensure that all the required information is included in you application
+Ready to make an impact? Check out our [Project Board](https://github.com/orgs/MinaFoundation/projects/7) for all open grants. Submit your proposal directly under the relevant issue, and ensure to follow our [proposal template](https://github.com/MinaFoundation/Launch-Grants/blob/main/Templates.md) for completeness.
 
-## Questions/Discussion
-Please see the dedicated Slack Channel (TBD) for more infromation
+## Have Questions or Want to Discuss?
+Join our vibrant community on our dedicated [Discord Channel](https://discord.gg/minaprotocol) for all your queries and discussions. We're here to support your journey every step of the way!
