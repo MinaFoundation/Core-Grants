@@ -1,0 +1,5 @@
+# Codeowners file
+
+# Default owner for everything in this repo, unless further specified below, is the `grants-reviewers` team.
+
+* @MinaFoundation/grants-reviewers
