@@ -11,7 +11,7 @@ Embark on a journey of contribution and innovation with these simple steps:
 4. 🔄 **Creation and Delivery:** This cycle continues until there exists tangible results — be it software, designs, or other forms of output.
 
 ## Types of Grant Tracks
-Your innovative solutions could receive grants from Mina Foundation, subject to milestone achievements.
+Your innovative solutions could receive grants from Mina Foundation, subject to milestone achievements and Mina Foundation's KYC/AML requirements.
 - 🌐 **Ecosystem Advancement:** Here, we focus on proposals originating from RFCs, covering specific scopes and deliverables.
 - 🌍 **Public Goods:** Aimed at supporting new developments, maintenance, or enhancement of Mina Protocol.
 
