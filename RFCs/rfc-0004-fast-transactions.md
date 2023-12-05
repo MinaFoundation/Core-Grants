@@ -1,4 +1,4 @@
-# RFC-0004: Enhancing SmartContract Transactions with Recursive Proofs
+# RFC-0004: Decreasing the interval between SmartContract's Transactions from 3 minutes to 1 second with Recursive Proofs
 
 - **Intent**: Implement recursive proofs in SmartContract transactions to reduce the minimum transaction interval from 3 minutes to 1 second.
 - **Submitted by**: DFST ([Github](https://github.com/dfstio), [Twitter](https://twitter.com/dfst_io), Discord: dfst.io)
@@ -16,7 +16,7 @@ Mina Protocol's SmartContract transactions, authenticated through proof, must me
 - Proof verification against the SmartContract's verification key.
 - Fee alignment with the market rate.
 
-Once verified, the transaction's inclusion in the block is assured, bypassing the need for blockchain-wide recalculations. Despite known post-verification states, SmartContracts must wait about 3 minutes for state reflection in the new block before initiating another transaction.
+Once verified, the transaction's inclusion in the block is assured, bypassing the need for blockchain-wide recalculations. Despite known post-verification state, SmartContracts must wait about 3 minutes for state reflection in the new block before initiating another transaction.
 
 Current approaches to multiple transactions within a block include:
 
