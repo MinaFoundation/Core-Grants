@@ -1,4 +1,4 @@
-# RFC-0004: Decreasing the interval between SmartContract's Transactions from 3 minutes to 1 second with Recursive Proofs
+# RFC-0004: Decreasing the minimum interval between SmartContract's Transactions from 3 minutes to 1 second with Recursive Proofs
 
 - **Intent**: Implement recursive proofs in SmartContract transactions to reduce the minimum transaction interval from 3 minutes to 1 second.
 - **Submitted by**: DFST ([Github](https://github.com/dfstio), [Twitter](https://twitter.com/dfst_io), Discord: dfst.io)
