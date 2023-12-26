@@ -42,9 +42,9 @@ We had positive feedbacks from the community, with most people supporting the re
 >
 >My personal take (not formally speaking on behalf of MF either) would be reducing block rewards to 500, plus 33% fee burning, I think that would be a good step forward for the next HF after zkApps (pending perhaps seeing if fee burning is complex to implement). Some thoughts on why for each of these too. (Ultimately, I’d like to emphasize that this is up to the Mina community and would love to see an MIP on it)
 >
->500 block reward - We want to make sure staking participation stays strong for network security, so a modest decrease from the current 720 probably makes sense. ~5% annual inflation towards network security has some precedence on other networks too such as Ethereum.
+> - 500 block reward - We want to make sure staking participation stays strong for network security, so a modest decrease from the current 720 probably makes sense. ~5% annual inflation towards network security has some precedence on other networks too such as Ethereum.
 >
->33% fee burning - this probably won’t do very much until network activity goes up, but having this agreed and implemented would be a strong statement I think about what to expect from the tokenomics, vs it just being planned or being discussed. This also now has some precedence with Ethereum too with their fee market & burning.
+> - 33% fee burning - this probably won’t do very much until network activity goes up, but having this agreed and implemented would be a strong statement I think about what to expect from the tokenomics, vs it just being planned or being discussed. This also now has some precedence with Ethereum too with their fee market & burning.
 >
 >I’d also be supportive of some kind of tokenomics work / report too on different options and tradeoffs, given its a big decision I think. I’d be curious if there are any groups that have looked at L1s in particular, as opposed to most of their work being on the DeFi side.
 >
@@ -55,8 +55,9 @@ and Emre (CEO of o1Labs):
 >[speaking from personal perspective and not representing O(1) Labs’ view]
 >I am supportive of investing more time and energy into revamping Mina’s tokenomics. Both Gauntlet and Delphi are well reputed teams so supportive of working with them too. To me there are two aspects however to any research and proposal:
 >
->Model: Do we stick to current fixed inflation; or have something more sophisticated and dynamic like Ethereum’s. Personally I would be strongly in favor of a fee burn model that allows the supply to go deflationary based on increasing usage of block space.
-Implementation: How does the Model above get implemented into the protocol. e.g. if kept at fixed inflation, is there a need for protocol to dynamically adjust block rewards to actually target fixed inflation (based on fill rate / slot time / other factors); or is the community ok with something more simple like what there is today.
+> - Model: Do we stick to current fixed inflation; or have something more sophisticated and dynamic like Ethereum’s. Personally I would be strongly in favor of a fee burn model that allows the supply to go deflationary based on increasing usage of block space.
+>
+> - Implementation: How does the Model above get implemented into the protocol. e.g. if kept at fixed inflation, is there a need for protocol to dynamically adjust block rewards to actually target fixed inflation (based on fill rate / slot time / other factors); or is the community ok with something more simple like what there is today.
 
 ## Open Issues and Discussion Points
 
