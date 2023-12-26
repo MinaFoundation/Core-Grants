@@ -12,10 +12,9 @@ Mina’s tokenomics, especially the high inflation brought by supercharged rewar
 
 **'Incentives are superpowers; set them carefully.'** - [Sam Altman](https://blog.samaltman.com/what-i-wish-someone-had-told-me).
 
-A detailed introduction to the RFC, providing context and background information. This should include:
+Tokenomics is as important as the consensus algorithm to a blockchain. On one hand, it contributes to the security by making attacking the chain more costly; on the other hand, it creates incentives for people to participate in the operation of the chain in various roles, from miners/block producers, to ecosystem builders, to end users.
 
-- The problem or opportunity the RFC addresses.
-- The relevance and importance of this RFC to the Mina ecosystem.
+
 
 ## Objectives
 
