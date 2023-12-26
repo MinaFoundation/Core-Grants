@@ -2,7 +2,7 @@
 
 - **Intent**: [To request that Mina Foundation commission a reputable research team to redesign Mina tokenomics to best incentivise protocol developments.]
 - **Submitted by**: [lamps (discord: lamps6718, twitter: lamps945); Pete(discord: flushthefashion, twitter: minacryptocom) ]
-- **Submitted on**: [27 Dec 2023]
+- **Submitted on**: [26 Dec 2023]
 
 ## Abstract
 
@@ -24,19 +24,20 @@ A perfect tokenomics design needs to take considerations of all the following as
 - Security of the blockchain
 - Value capture
 - Incentives, for people to participate in and to build on top of the chain. It can only be achieved by striking a delicate balance between inflation and deflation mechanisms, and token prices.
-- Mina's unique off-chain computation, on-chain verification design, which means the 'gas fees' are the same no matter how complex the computation.
+- Mina's unique design of off-chain computation & on-chain verification, which means the 'gas fees' are the same no matter how complex the computation.
 - Utility with zkApps, eg custom token issuance (similar to ERC20 tokens using Ether) and settling the zkApp transactions on the base layer. 
-- Symbiosis with Layer 2s on top of Mina: ZekoLabs, Anomix etc
+- Symbiosis with Layer 2s on top of Mina: ZekoLabs, Protokits, Anomix etc
 
-## Proposed work
+## Proposed approach
 To achieve all these design goals at the same time is obviously a multidisciplinary task involving many sub fields of computer sciences and economics. While MF and o1Labs have established themselves at the forefront zk, in our opinion the design of the tokenomics would benefit significantly from engaging with other leading experts encompassing the broad fields with proved successful experiences. Therefore, through this RFC, we would like to request that Mina Foundation commission a world leading team to conduct a comprehensive review and redesign Mina’s tokenomics. As far as the author’s knowledge, the following teams would be good choices (disclaimer: we are not associated with these teams in any way):
 
 - Gauntlet (https://www.gauntlet.xyz/ 11 ) led by Tarun Chitra, are a leading expert team for tokenomics design. Coincidentally, Gauntlet also reviewed Mina’s original tokenomics upon mainnet launch in 2021.
 - Delphi Digital. Most famously designed Axie Infinity’s tokenomics in 2021 which was a great success.
+- Blockworks Research
 
-## Initial comments from MinaResearch post
+## Initial comments from the MinaResearch post
 
-We had positive feedbacks from the community, with most people supporting the review and redesign a long-term plan of tokenomics. See the details on [this link](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131). Here I copy over the replies from Evan (then CEO of Mina Foundation):
+We had positive feedbacks from the community, with most people supporting the review and redesign a long-term plan of tokenomics. See the details on [the link to the post](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131). Here I copy over the replies from Evan (then CEO of Mina Foundation):
 
 >Hey, yeah I would be supportive of this too.
 >
@@ -61,16 +62,18 @@ and Emre (CEO of o1Labs):
 
 ## Open Issues and Discussion Points
 
-List any remaining open issues or questions that need to be resolved. Encourage discussion and feedback on these points.
+From the MinaResearch post, a few points were brought forward for discussion: 
+
+- **How to decide which service provider to choose.** It might be more efficient to omit MIP process in the RFP stage, but relies on MF/ o1's experience with the said providers and their proposals to decide who to go for (could be beneficial to have two teams working on it). 
+- **How to decide which new design to implement to the protocol.** After the review and redesign processes are done, an MIP could be used to decide which one to implement. The flow looks like: RFC/RFP to redesign Mina tokenomics → getting proposals and designs from Gauntlet/Delphi etc → MIP to vote on the new tokenomics to be integrated onchain. 
+- **Whether a redesign of tokenomics is needed at all.** This was brought by Talha in [his reply](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/13). It is entirely possible that the current tokenomics work well post hardfork, but in that case the review would conclude so, therefore the review is still worth commissioning.
+- **parametric design of tokenomics with a governing council to oversee the parameter configurations.** This was brought up by Jonathan in his reply to the post, see the [original idea](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/18) and [further explanation](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/22).  
 
 ## Conclusion
 
-Summarize the key points of the RFC and reiterate its importance and expected outcomes.
+We have presented the historical issues of Mina's tokenomics and the imminent oppotuinities presented by the hardfork, and propose that a review and redesign of the tokenomics is commissioned to a reputable team within the crypto space. We also reviewed the objectives of the redesign, and presented comments from the Mina community and key discussion points for the RFC. 
 
-## Appendices
-
-Include any additional material that supports the RFC, such as data tables, detailed analysis, or extended examples.
 
 ## References
 
-List all references and sources cited in the RFC. Ensure proper formatting and attribution for each reference.
+[1]. https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131
