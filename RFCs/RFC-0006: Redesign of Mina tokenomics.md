@@ -6,7 +6,7 @@
 
 ## Abstract
 
-Mina’s tokenomics, especially the high inflation brought by supercharged rewards, has been the concern of many community members, as evident by the number of posts on the [MIP channel of Mina Research](https://forums.minaprotocol.com/c/mips-mina-improvement-proposals/24). The upcoming zkApp hardfork also makes the original tokenomics design outdated. In this RFC idea, instead of proposing a tokenomics model directly, we outline the importance, opportunity and difficulty to design a successful model for Mina, and propose that Mina Foundation commission a thorough review and redesign of Mina’s tokenomics post hardfork, taking in account the critical aspects as outlined here.
+Mina’s tokenomics, especially the high inflation brought by supercharged rewards, has been the concern of many community members, as evident by the number of posts on the [MIP channel of Mina Research](https://forums.minaprotocol.com/c/mips-mina-improvement-proposals/24). The upcoming zkApp hardfork also makes the original tokenomics design - a linear emission model - outdated. In this RFC idea, instead of proposing a tokenomics model directly, we outline the importance, opportunity and difficulty to design a successful model for Mina, and propose that Mina Foundation commission a thorough review and redesign of Mina’s tokenomics post hardfork, taking in account the critical aspects as outlined here.
 
 ## Introduction
 
