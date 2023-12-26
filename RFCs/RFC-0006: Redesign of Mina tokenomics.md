@@ -1,4 +1,4 @@
-# RFC-0006: [Redesign of Mina tokenomics]
+# RFC-0006: [Review and Redesign of Mina Tokenomics]
 
 - **Intent**: [To request that Mina Foundation commission a reputable research team to redesign Mina tokenomics to best incentivise protocol developments.]
 - **Submitted by**: [lamps (discord: lamps6718, twitter: lamps945); Pete(discord: flushthefashion, twitter: minacryptocom) ]
