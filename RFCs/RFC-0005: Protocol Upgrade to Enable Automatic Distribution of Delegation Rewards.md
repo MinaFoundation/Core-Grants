@@ -6,7 +6,7 @@
 
 ## Abstract
 
-This RFC aims to address one big pain point affecting all node operators on Mina network, which is the distribution of delegation rewards. The current mechanism relies the node operators to voluntarily calculate the rewards and send them back to the delegators. It is error-prone for the calculations and, more importantly, relies complete trust of the node operator, which hinders the decentralisation of the network. The RFC requests a redesign of the mechanism and achieve one that is similar to the Cosmos chains of Cardano, where the rewards are not accessible to the node operators, and the delegators can check and claim the rewards any time.   
+This RFC aims to address one big pain point affecting all node operators on Mina network, which is the distribution of delegation rewards. The current mechanism relies the node operators to voluntarily calculate the rewards and send them back to the delegators. It is error-prone for the calculations and, more importantly, relies complete trust of the node operator, which hinders the decentralisation of the network. The RFC requests the design and implementation of a new mechanism to achieve functionality that is similar to the Cosmos chains or Cardano, where the rewards are not accessible to the node operators, and the delegators can check and claim the rewards any time. Some scenarios and requirements are outlined below for discussion. 
 
 ## Introduction
 
@@ -16,9 +16,11 @@ Two major issues come with this relatively rudimentary design: one is the conges
 
 ## Objectives
 
-A redesign of the mechanism and achieve one that is similar to the Cosmos chains of Cardano, where the rewards are not accessible to the node operators, and the delegators can check and claim the rewards any time. 
+A redesign of the mechanism and achieve one that is similar to the Cosmos chains or Cardano, where the rewards are not accessible to the node operators, and the delegators can check and claim the rewards any time. 
 
 This will help resolve both issues mentioned above: the reward claim transactions can be much evenly distributed in time during each epoch (instead of congestion towards the end/beginning), and the necessity to trust a node operator is removed.  
+
+Ideally, we could go further in reducing system complexity from the end-user's experience, e.g. for a user staking MINA in a wallet. We could reduce the necessity for that user to be concerned with the "claim" transaction at all; rewards should always be directly distributed to their wallet and can be used for things like paying transaction fees (reducing two transactions into one -- one claim, one spend -> one spend).
 
 ## Motivation and Rationale
 
@@ -38,6 +40,8 @@ As mentioned in the Introduction section.
 ## Open Issues and Discussion Points
 
 Community member and MinaExplorer operator, garethdavies, has conducted some research and given an example of doing pool payouts with a zkApp: [1]. https://hackmd.io/@garethtdavies/BJH3xMpFs. To quote him: 'there are numerous issues with this, not least the reliance on an oracle for block history and currently no way to bind the coinbase receiver to the zkApp.'
+
+We mentioned that the user ideally should not be concerned with the 'claim' action at all. An edge scenario where a wallet user would need to be aware of a "claim" transaction is if there were constraints around the distribution of rewards, notably, this was a large topic in 2023 in the Cardano ecosystem; [contingent staking](https://forum.cardano.org/t/personal-thoughts-on-contingent-staking/114912). There needs to be discussions if the Mina ecosystem believes a requirement for this feature would be to enable constraints on the spending (i.e. claiming) of staking rewards, in essence, to give those accounts programmable logic. 
 
 ## Conclusion
 
