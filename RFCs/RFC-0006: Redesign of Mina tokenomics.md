@@ -23,7 +23,7 @@ Even though an MIP has been passed in early 2023 to remove supercharged rewards 
 ## Objectives
 An ideal tokenomics design for Mina needs to take considerations of all the following aspects and perhaps some more:
 
-- Security of the blockchain
+- Security of the blockchain. In addition to the POS considerations on Mina's native chain, one additional thing that could work in Mina's favour is that it could inherent security from Ethereum, once its state can be verified on Ethereum via the Mina -> Ethereum bridges worked by Nil Foundation and Lambda Class. See discussions [here](https://polynya.medium.com/nil-foundations-trustless-bridges-9d205929f69).  
 - Value capture
 - Incentives, for people to participate in and to build on top of the chain. It can only be achieved by striking a delicate balance between inflation and deflation mechanisms, and token prices.
 - Mina's unique design of off-chain computation & on-chain verification, which means the verification 'gas fees' are the same no matter how complex the off-chain computation is.
