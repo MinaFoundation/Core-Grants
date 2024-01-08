@@ -28,6 +28,22 @@ However, with ZKPs, users could provide proofs about their passport information,
 
 Additionally, because passports following this standard support NFC, which is present on most smartphones, users can obtain this data themselves from their own passports relatively easily. Here for example is an open library that reads passports for iOS[[3](https://github.com/AndyQ/NFCPassportReader)].
 
+Properties stored in the standard include:
+* documentType
+* documentSubType
+* documentNumber
+* issuingAuthority
+* documentExpiryDate
+* dateOfBirth
+* gender
+* nationality
+* lastName
+* firstName
+* names
+* placeOfBirth
+* residenceAddress
+* phoneNumber
+
 ## Objectives
 
 We propose a grant taking advantage of this, implementing, at a high level, the following:
