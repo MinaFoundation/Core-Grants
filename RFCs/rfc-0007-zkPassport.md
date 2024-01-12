@@ -2,7 +2,7 @@
 
 - **Intent**: Create a private identity primitive for Mina and connected ecosystems that is secure and accessible.
 - **Submitted by**: Evan Shapiro (Github: @es92, Twitter: @evanashapiro)
-- **Submitted on**: 1/8/2024
+- **Submitted on**: January 8th, 2024
 
 ## Abstract
 
@@ -68,7 +68,7 @@ Web2 applications may find use in this functionality as well. This seems particu
 | Aspect           | Description |
 |------------------|-------------|
 | **Description**  | A zkApp wants a user to prove they are unique. |
-| **Requirements** | An implementation of zkPassport in the Attestation API Standard (see objectives), plus an on-chain nullifier that users can use with the zkApp. |
+| **Requirements** | An implementation of zkPassport in the Attestation API Standard (see objectives), plus an on-chain nullifier that users can use with the zkApp. zkPassport nullifier proofs should be sure to have a *context* input salt that is hashed with the unique zkPassport identifier to ensure identities are unique across their context, but cannot be associated cross-context unless a proof is provided by the user. |
 | **Expected Outcome** | Via leveraging a simple library, users can make zkApps that are sybil-resistant. |
 | **Impact Analysis** | This would unlock many applications, such as one-person-one-vote, one-person-one account, Sybil-Resistant airdrops, etc. |
 
@@ -90,6 +90,8 @@ It seems countries keep databases of lost, stolen, and revoked travel documents[
 Lastly, a passport isn't something that everyone has or is able to get, so this is unlikely to work as a universal solution for proving personhood. That said, it could be a useful "anchor", for decentralized social-graph based approaches, which I think could be promising future work.
 
 This could be done via passport-holders verifying non-passport-holders. One way this could work is requiring multiple passport-holders, say 3, to attest to the validity of a non-passport-holder, and limiting the number of times they can do this (if 3 passport-holders are required, and each passport-holder gets 3 verifications, this would mean each passport-holder could verify up to one non-passport-holder on average).
+
+Additionally, there are various social and privacy risks to enabling digital composable identity. Including a "context"-specific salt in nullifiers is mentioned above as one way to ensure users have choice over what to expose about their cross-context identity-specific operations. But other risks and mitigations should be considered as well with this new technology.
 
 ## Conclusion
 
