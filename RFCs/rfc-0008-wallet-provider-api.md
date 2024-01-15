@@ -1,8 +1,8 @@
 # RFC-0008: Mina Provider JavaScript API
 
-## Summary
-
-A JavaScript Mina Provider API for consistency across clients and applications.
+- **Intent**: Introduces a first, extensible standard JavaScript Mina Provider API for consistency across clients and applications.
+- **Submitted by**: Theodore Pender (Github: @teddyjfpender, email: theodore.pender@minaprotocol.com, Twitter/X: @franklyteddy)
+- **Submitted on**: Monday, January 15, 2024
 
 ## Abstract
 
