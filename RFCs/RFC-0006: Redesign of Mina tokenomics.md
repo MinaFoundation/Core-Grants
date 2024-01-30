@@ -69,7 +69,17 @@ From the MinaResearch post, a few points were brought forward for discussion:
 - **How to decide which service provider to choose.** It might be more efficient to omit MIP process in the RFP stage, but relies on MF/ o1's experience with the said providers and their proposals to decide who to go for (could be beneficial to have two teams working on it). 
 - **How to decide which new design to implement to the protocol.** After the review and redesign processes are done, an MIP could be used to decide which one to implement. The flow looks like: RFC/RFP to redesign Mina tokenomics → getting proposals and designs from Gauntlet/Delphi etc → MIP to vote on the new tokenomics to be integrated onchain. 
 - **Whether a redesign of tokenomics is needed at all.** This was brought by Talha in [his reply](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/13). It is entirely possible that the current tokenomics work well post hardfork, but in that case the review would conclude so, therefore the review is still worth commissioning.
-- **parametric design of tokenomics with a governing council to oversee the parameter configurations.** This was brought up by Jonathan in his reply to the post, see the [original idea](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/18) and [further explanation](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/22).  
+- **parametric design of tokenomics with a governing council to oversee the parameter configurations.** This was brought up by Jonathan in his reply to the post, see the [original idea](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/18) and [further explanation](https://forums.minaprotocol.com/t/mip-to-review-and-redesign-mina-tokenomics/6131/22).
+- **potential structure of the review report**   Evan's [recommendation on how to structure the report] (https://github.com/MinaFoundation/Core-Grants/pull/10#issuecomment-1904379032): 
+> A review of the economic parameters / systems within Mina
+> 
+> A review of other protocols and how they have setup their token-economics
+> 
+> A recommendation of a range of parameters / different options for Mina to consider
+> 
+> A discussion how Mina might choose between different options and parameter selections for different preferences, and recommendations of particular parameter selections given different preferences.
+> 
+> We might want to bake into the grant some review rounds as well with opportunities for MF to organize community comments for whoever is doing the report to respond with more information.
 
 ## Conclusion
 
