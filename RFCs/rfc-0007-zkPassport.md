@@ -91,6 +91,12 @@ Lastly, a passport isn't something that everyone has or is able to get, so this 
 
 This could be done via passport-holders verifying non-passport-holders. One way this could work is requiring multiple passport-holders, say 3, to attest to the validity of a non-passport-holder, and limiting the number of times they can do this (if 3 passport-holders are required, and each passport-holder gets 3 verifications, this would mean each passport-holder could verify up to one non-passport-holder on average).
 
+Applications using zkPassport should be very clear what exactly it is they are proving - specifically, proof of having had access, at some point during a passports lifetime, to the data contained on the passport's NFC chip.
+
+Users of applications should be careful to keep their passports secure. Note that passport RFIDs can only be read while the passport is open and a portable reader is within 6" of the passport, somewhat mitigating this risk.
+
+However if a user suspects someone may have had access to their passport they should consider expiring it and getting a new one (open question: how hard is this to do?), and an implementation of zkPassport should include logic for expiring old passports and replacing them with new ones. 
+
 Additionally, there are various social and privacy risks to enabling digital composable identity. Including a "context"-specific salt in nullifiers is mentioned above as one way to ensure users have choice over what to expose about their cross-context identity-specific operations. But other risks and mitigations should be considered as well with this new technology.
 
 ## Conclusion
