@@ -74,14 +74,19 @@ We will refer to the contract defining a soulbound token as "the contract", and 
 
 The token metadata contains four fields
 
-`holderKey`
-: The `PublicKey` that this token is issued to
-`issuedBetween`
-: A range of slots in which the token has been issued
-`revocationPolicy`
-: This determines who needs to agree to the revocation of the token. Depending on how the token is to be used, it can be sensible to require the token issuer, the token holder, or both to agree to the token being revoked. Furthermore, we allow for tokens that can never be revoked.
-`attributes`
-: This array of values of type `Field`, holds custom data, according to the specific use case.
+<dl>
+  <dt>`holderKey`</dt>
+  <dd>The `PublicKey` that this token is issued to</dd>
+
+  <dt>`issuedBetween`</dt>
+  <dd>A range of slots in which the token has been issued</dd>
+
+  <dt>`revocationPolicy`</dt>
+  <dd>This determines who needs to agree to the revocation of the token. Depending on how the token is to be used, it can be sensible to require the token issuer, the token holder, or both to agree to the token being revoked. Furthermore, we allow for tokens that can never be revoked.</dd>
+
+  <dt>`attributes`</dd>
+  <dd>his array of values of type `Field`, holds custom data, according to the specific use case.</dd>
+</dl>
 
 ### Issuing a token
 
@@ -121,14 +126,14 @@ This probability has to be accounted for in a production implementation of soulb
 
 This is a common problem when dealing with blockchains or other distributed systems, and there are a number of ways in which the off-chain service can assure consistency with the contract:
 
-Keeping Snapshots
-: The off-chain system does not only store the most recent value of the map, but a number of snapshots. Whenever there is a rollback of a temporary fork that has an effect on the map, it reverts to the appropriate snapshot.
-Event Log Style
-: Going all-in on the idea of snapshots, the service could store the map as an event log, keeping all the actions that modified it to arrive at the current state. A rollback in this model would be handled by ignoring the tail of the event log.
-Public Event Log
-: Taking this idea even further, the contract could me modified to emit events that completely describe each modification of the merkle map. This approach has the advantage of allowing anyone observing those events to replicate the off-chain service, removing a potential point of centralisation.
-Retrying Transactions
-: In addition, the service can resubmit transactions that were lost in a rollback. This can improve the user experience, but in itself is not sufficient to ensure consistency. In particular, some transactions might be rejected at resubmission because the time interval to issue a token has passed. Furthermore, attempts to issue/validate/revoke a token would fail in the time between the rollback and the reinclusion of the relevant transactions.
+1. Keeping Snapshots
+   The off-chain system does not only store the most recent value of the map, but a number of snapshots. Whenever there is a rollback of a temporary fork that has an effect on the map, it reverts to the appropriate snapshot.
+2. Event Log Style
+   Going all-in on the idea of snapshots, the service could store the map as an event log, keeping all the actions that modified it to arrive at the current state. A rollback in this model would be handled by ignoring the tail of the event log.
+3. Public Event Log
+   Taking this idea even further, the contract could me modified to emit events that completely describe each modification of the merkle map. This approach has the advantage of allowing anyone observing those events to replicate the off-chain service, removing a potential point of centralisation.
+4. Retrying Transactions
+   In addition, the service can resubmit transactions that were lost in a rollback. This can improve the user experience, but in itself is not sufficient to ensure consistency. In particular, some transactions might be rejected at resubmission because the time interval to issue a token has passed. Furthermore, attempts to issue/validate/revoke a token would fail in the time between the rollback and the reinclusion of the relevant transactions.
 
 ## API Specification
 
