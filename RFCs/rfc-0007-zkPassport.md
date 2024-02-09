@@ -81,6 +81,42 @@ Web2 applications may find use in this functionality as well. This seems particu
 | **Expected Outcome** | Via leveraging a simple library, zkApps can require a user to prove facts about their nationality. |
 | **Impact Analysis** | This would be useful across web3, to make applications that are regulatory-compliant. |
 
+## Implementation with Wallet Attestation API
+
+zkPassword would be integrated via (and ideally developed in tandem with) the Wallet Attestation API. It would use the to-be-defined in detail "FlatCredential" program. The credential uploaded to the Attestation API, following the FlatCredentialAttestation spec, would look as follows:
+
+```
+{
+    documentExpiryDate: (Jan 01 2028: Date),
+    dateOfBirth: (Jan 01 2000: Date),
+    nationality: ("USA": String),
+    firstName: ("Alice": String),
+    ...
+    credentialHash: ("xb82818...": SHA256Hash),
+    credentialHashSignature: ("ntn838...": PassportSignature),
+}
+```
+
+And the attestation spec would be called with an object created in the browser as follows. The wallet would use this object to compute the attestation.
+
+```
+let verifier = new FlatCredentialVerifier();
+const hash = verifier.sha256Hash([ verifier.field('nationality'), ... ]);
+verifier = verifier.checkEqual('credentialHash', hash);
+verifier = verifier.verifySignature('credentialHashSignature', verifier.field('credentialHash'), countryPublicKey);
+
+verifier = verifier.checkEqual('nationality', 'USA')
+
+const zkProof = AttestationAPI.createAttestation(verifier);
+}
+```
+
+The AttestationAPI would let the user know what fields of the credential are being requested and what the verifier is asking to know about those fields. More details should be included in the AttestationAPI documentation for the proposed FlatCredential program.
+
+It will be up to the implementer of this RFC to work with the implementer of the Attestation API RFC to ensure the relevant cryptography and methods are included in FlatCredentialv0 to cover zkPassport.
+
+It is expected multiple versions of FlatCredential will be built with additional cryptography supported, to support more and more attestation sources.
+
 ## Open Issues and Discussion Points
 
 A remaining question is exactly what new cryptography primitives would need to be implemented in o1js, if any new ones are needed. It looks like RSA, DSA, ECDSA, and Sha-xxx are used (see pages 15, 16, and 17 here[[4](https://www.icao.int/publications/Documents/9303_p12_cons_en.pdf)]).
