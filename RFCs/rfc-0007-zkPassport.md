@@ -117,6 +117,8 @@ It will be up to the implementer of this RFC to work with the implementer of the
 
 It is expected multiple versions of FlatCredential will be built with additional cryptography supported, to support more and more attestation sources.
 
+The implementation should also include an identity anonymizing zkApp (see comments on github), to insure the passport issuer cannot see the user's on-chain activity through their knowledge of P and H(P).
+
 ## Open Issues and Discussion Points
 
 A remaining question is exactly what new cryptography primitives would need to be implemented in o1js, if any new ones are needed. It looks like RSA, DSA, ECDSA, and Sha-xxx are used (see pages 15, 16, and 17 here[[4](https://www.icao.int/publications/Documents/9303_p12_cons_en.pdf)]).
@@ -138,6 +140,11 @@ Additionally, there are various social and privacy risks to enabling digital com
 ## Conclusion
 
 This RFC proposes an implementation of a private identity system leveraging passports (zkPassport) for use in the Mina Ecosystem and any connected chains.
+
+## TODO
+
+* Check that o1js supports all of the relevant cryptography, or see what would be left to be implemented
+* Make sure there is enough entropy in P that H(P) can't be brute-forced
 
 ## Appendices
 
