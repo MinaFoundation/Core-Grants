@@ -6,34 +6,40 @@
 
 ## Abstract
 
-Soulbound Tokens (SBTs) are tokens that can be minted and burned, but not transferred. Thus, once created, they are bound to a specific account. They have been introduced in by [Weyl, Ohlhaver, and Buterin](https://deliverypdf.ssrn.com/delivery.php?ID=024094113006074084068090083083002102099074018037042059108095065004025006107091098074121060123119021098114124082003091083104116027080071064004069000082112003086113101067062033017010089116112119093027117126025089067099084001096084122028105088089029124073&EXT=pdf&INDEX=TRUE), along with several ideas for applications that they enable.
+Soulbound Tokens (SBTs) are tokens that can be minted and burned, but not transferred. Thus, once created, they are bound to a specific account. They have been introduced in[^1], along with several ideas for applications that they enable.
 
-This rfc  proposes a set of standard interfaces that implementations of SBTs on Mina should adhere to. The reference implementation shows how SBTs that adhere to this standard can be implemented on Mina using `o1js`.
+This rfc proposes a set of standard interfaces that implementations of SBTs on Mina should adhere to. The reference implementation shows how SBTs that adhere to this standard can be implemented on Mina using `o1js`.
 
 ## Introduction
 
-TODO
+Soulbound tokens (SBTs) are non-fungible tokens that cannot be transferred. Once created, they are tied to a specific account (called a "Soul" in this context) for as long as they exist.
 
-A detailed introduction to the RFC, providing context and background information. This should include:
+While this is a severe restriction compared to ordinary non-fungible tokens (NFTs), this restriction does enable a number of use cases. Think of tokens that are created to represent a certain fact about a person, such as a POAP that attests attendance at an event, or a KYC token stating that someone has undergone some know your customer. If those tokens can be transferred, they are much less significant, as it is straightforward to trade them. However, if such a token is implemented as an SBT, there is a system level guarantee that it has never been moved.
 
-- The problem or opportunity the RFC addresses.
-- The relevance and importance of this RFC to the Mina ecosystem.
+In addition to these attestations, SBTs also allow representing a class of real world contracts that grant the right to use an asset, without the possibility of reselling that right (such as an appartment lease).
+
+There are different ways in which SBTs can be created. While some tokens might be created by a soul and issued to itself, the more useful case is when one soul (called issuer in the rest of this docuemt), creates a token that is bound to another soul (called the owner of that SBT below). In that case, the SBT can represent a given relationship between two parties on the chain. An employer, maintainer of an open source project, or club might issue a token to their employees/contributors/members. Other tokens might represent credentials from succeeding at university or online courses, winning a competition, etc.
+
+Beyond simply tracking individual relationships such as having completed KYC, the paper[^1] suggests to use the collective of SBTs to establish _social provenance_, which enables a number of interesting use cases, including
+
+- Community Recovery: a way of recovering your private key by having a qualified majority of related souls attest to a users identity
+- Sybil protection in DAO governance: determining voting power as a function of the reputable SBTs of a soul, to dampen or remove the influence of bots
+- Measuring decentralisation, including social dependencies
+- Encouraging cooperation across different homogeneous groups
+
+and many more.
+
+
+All in all, soulbound tokens are an interesting and promising concept. This RFC intents to facilitate their use in the Mina ecosystem by establising a standard for how to create them and interact with them.
 
 ## Objectives
 
-TODO
-
-List the primary objectives and goals of the RFC. This section should be clear and concise, focusing on what the RFC aims to achieve.
+1. Establish a minimal standard for an API to create, verify, and revoke SBTs. Having a standard for this is cruciual for integration with wallets and any kind of zkApp might want to use SBTs. Standardisation is particularly important when it comes to capturing the collective of SBTs for the purpose of social provenance.
+2. Provide a reference implementation for SBTs.
 
 ## Motivation and Rationale
 
-TODO
-
-Provide a comprehensive explanation of why this RFC is necessary. This may include:
-
-- Analysis of current challenges.
-- Insights from relevant research or data.
-- Connections to goals or priorities.
+Soulbound tokens are a fairly new concept, and currently, there is neither a standard nor an existing implementation of an SBT on Mina. Ethereum does have a standard in the form of ERC-5484[^2]. We should aim to create a standard on Mina as well, preferably before we get a number of implementations with different interfaces.
 
 ## Scenarios and Use Cases
 
@@ -75,14 +81,14 @@ We will refer to the contract defining a soulbound token as "the contract", and 
 The token metadata contains four fields
 
 <dl>
-  <dt>`holderKey`</dt>
+  <dt>`ownerKey`</dt>
   <dd>The `PublicKey` that this token is issued to</dd>
 
   <dt>`issuedBetween`</dt>
   <dd>A range of slots in which the token has been issued</dd>
 
-  <dt>`revocationPolicy`</dt>
-  <dd>This determines who needs to agree to the revocation of the token. Depending on how the token is to be used, it can be sensible to require the token issuer, the token holder, or both to agree to the token being revoked. Furthermore, we allow for tokens that can never be revoked.</dd>
+  <dt>`burnAuth`</dt>
+  <dd>This determines who needs to agree to the revocation of the token. Depending on how the token is to be used, it can be sensible to require the token issuer, the token owner, or both to agree to the token being revoked. Furthermore, we allow for tokens that can never be revoked. See [ERC 5485](https://eips.ethereum.org/EIPS/eip-5484)</dd>
 
   <dt>`attributes`</dd>
   <dd>his array of values of type `Field`, holds custom data, according to the specific use case.</dd>
@@ -104,11 +110,11 @@ The contract should provide a method `verify`. Given some metadata and a corresp
 
 Constructing the witness shall be performed by the off-chain service. The service should also return that witness to the user, so that they can reproduce the proof of inclusion against the merkle root.
 
-Verification of a token might or might not be a privileged operation requiring a signature from the token holder.
+Verification of a token might or might not be a privileged operation requiring a signature from the token owner.
 
 ### Revoking a token
 
-The contract should provide methods `revokeHolder`, `revokeIssuer`, and `revokeBoth`, for revoking tokens on behalf of the token holder, the issuer, or both. Given specific metadata, a corresponding witness, and signatures from the holder and/or issuer, those methods will check that the revocation policy of the token is compatible with the request, that the token currently exists, and that the provided signatures are valid.
+The contract should provide methods `revokeOwner`, `revokeIssuer`, and `revokeBoth`, for revoking tokens on behalf of the token owner, the issuer, or both. Given specific metadata, a corresponding witness, and signatures from the owner and/or issuer, those methods will check that the revocation policy of the token is compatible with the request, that the token currently exists, and that the provided signatures are valid.
 
 If all checks succeed, the contract will update the merkle root to reflect revocation, and the off-chain service will update its `MerkleMap`.
 
@@ -155,4 +161,6 @@ Include any additional material that supports the RFC, such as data tables, deta
 
 ## References
 
-List all references and sources cited in the RFC. Ensure proper formatting and attribution for each reference.
+[^1]: Ohlhaver, Puja and Weyl, Eric Glen and Buterin, Vitalik, Decentralized Society: Finding Web3's Soul (May 10, 2022). Available at SSRN: https://ssrn.com/abstract=4105763 or http://dx.doi.org/10.2139/ssrn.4105763
+
+[^2]: Buzz Cai (@buzzcai), "ERC-5484: Consensual Soulbound Tokens," Ethereum Improvement Proposals, no. 5484, August 2022. [Online serial]. Available: https://eips.ethereum.org/EIPS/eip-5484.
