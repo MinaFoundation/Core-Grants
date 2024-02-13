@@ -1,4 +1,4 @@
-# RFC-0011: 
+# RFC-0011: Liquid Staking on Mina
 
 - **Intent**: Solicit feedback from relevant stakeholders and understand how to move forward on liquid staking
 - **Submitted by**: 45930, contact@45930.xyz
