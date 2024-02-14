@@ -1,8 +1,8 @@
 # RFC-0011: Soulboud Token Standard
 
 - **Intent**: Create a standard for Soulbound Tokens on Mina
-- **Submitted by**: Philipp Kant (email: philipp.kant@minafoundation.com, github: @kantp)
-- **Submitted on**: [Insert Submission Date]
+- **Submitted by**: Philipp Kant (email: philipp.kant@minafoundation.com, github: [@kantp](https://github.com/kantp))
+- **Submitted on**: 2024-02-14
 
 ## Abstract
 
@@ -98,7 +98,7 @@ The token metadata contains four fields
 
 The contract defining the token should provide a method `issue` that creates a token and binds it permanenty to a `PublicKey` on Mina. The caller provides the metadata, as well as a `MerkleMapWitness` that should prove that the token has not been issued yet.
 
-Constructing the witness will require knowledge of the current `MerkleMap`, abd thus will relyt on the off-chain service.
+Constructing the witness will require knowledge of the current `MerkleMap`, and thus will rely on the off-chain service.
 
 The contract will verify that the token has not existed previously. It will also evaluate a business logic particular to the concrete type of token, to determine whether the token should indeed be issued.
 
@@ -124,6 +124,8 @@ Again, construction of the witness is enabled by the off-chain service.
 
 Every time the merkle root is updated, the contract might emit an event publishing the new value of the root. This allows users to reproduce (off-chain) a proof that they held a specific token at a given time.
 
+The contract may also emit an event describing the actual modification of the `MerkleMap`. With that, any party that listens to those events could replicate those functionalities of the off-chain service that do not require generating a signature.
+
 ### Temporary Forks
 
 As a proof of stake system, Mina guarantees eventual consistency, but any change that is committed to the chain has a finite probability to be reverted during resolutiuon of a temporary fork.
@@ -136,12 +138,56 @@ This is a common problem when dealing with blockchains or other distributed syst
    The off-chain system does not only store the most recent value of the map, but a number of snapshots. Whenever there is a rollback of a temporary fork that has an effect on the map, it reverts to the appropriate snapshot.
 2. Event Log Style
    Going all-in on the idea of snapshots, the service could store the map as an event log, keeping all the actions that modified it to arrive at the current state. A rollback in this model would be handled by ignoring the tail of the event log.
-3. Public Event Log
-   Taking this idea even further, the contract could me modified to emit events that completely describe each modification of the merkle map. This approach has the advantage of allowing anyone observing those events to replicate the off-chain service, removing a potential point of centralisation.
-4. Retrying Transactions
+   
+   This approach also has the benefit that the service can match its internal event log against the events emitted from the smart contract. This is important, because a user might call the contract directly to, for instance, revoke a token that they own. In this case, the off-chain data in the service might go out of sync with the on-chain root. The events from the contract can be used to bring them back in sync.
+3. Retrying Transactions
    In addition, the service can resubmit transactions that were lost in a rollback. This can improve the user experience, but in itself is not sufficient to ensure consistency. In particular, some transactions might be rejected at resubmission because the time interval to issue a token has passed. Furthermore, attempts to issue/validate/revoke a token would fail in the time between the rollback and the reinclusion of the relevant transactions.
 
 ## API Specification
+
+The point of interaction for a user should not be the contract itself, but rather the off-chain service. Interacting directly with the contract should be strongly discouraged, as the off-chain service ensures that requests that interact with the `MerkleMap` are properly sequenced.
+
+We propose the service should implement the following `interface`:
+
+```typescript
+interface SBTService {
+    issue(request: SoulboundRequest, signature: Signature): Promise<void>
+    revoke(request: SoulboundRequest, ownerSignature?: Signature): Promise<void>
+    verify(metadata: SoulboundMetadata): Promise<MerkleMapWitness>
+}
+```
+
+Where we are using the following data structures:
+```typescript
+class SoulboundRequest extends Struct({
+    metadata: SoulboundMetadata,
+    type: Field,
+}) {
+    public static types = {
+        issueToken: Field(0),
+        revokeToken: Field(1)
+    }
+}
+
+class SoulboundMetadata extends Struct({
+    ownerKey: PublicKey,
+    issuedBetween: [UInt32, UInt32],
+    burnAuth: BurnAuth,
+    attributes: [Field],
+}) {
+    hash(): Field {
+        return Poseidon.hash(SoulboundMetadata.toFields(this));
+    }
+}
+```
+
+For some applications of soulbiund tokens, it is essential to be able to query whether a given `PublicKey` is the owner of a token of a certain kind, and retrieve its metadata. For these applications, the off-chain service may implement the following interface:
+
+```typescript
+interface SBTQuery {
+    getSoulboundToken(owner: PublicKey): SoulboundMetadata | undefined
+}
+```
 
 ## Reference Implementation
 
@@ -149,15 +195,11 @@ The repository https://github.com/MinaFoundation/soulbound-tokens contains a ref
 
 ## Open Issues and Discussion Points
 
-List any remaining open issues or questions that need to be resolved. Encourage discussion and feedback on these points.
+Private soulbound tokens are beyond the scope of this rfc and should be the subject of a future document.
 
 ## Conclusion
 
-Summarize the key points of the RFC and reiterate its importance and expected outcomes.
-
-## Appendices
-
-Include any additional material that supports the RFC, such as data tables, detailed analysis, or extended examples.
+Soulbound tokens are an interesting concept with a broad range of potential applications. We should expect people to start implementing and using them on Mina. This rfc proposes a standard that will guide developers who wish to do so. Having a standard will also enable wallets, exchanges, and third party contracts to interface with tokens that adhere to the standard.
 
 ## References
 
