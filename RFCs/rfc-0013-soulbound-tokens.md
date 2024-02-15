@@ -1,4 +1,4 @@
-# RFC-0011: Soulboud Token Standard
+# RFC-0013: Soulboud Token Standard
 
 - **Intent**: Create a standard for Soulbound Tokens on Mina
 - **Submitted by**: Philipp Kant (email: philipp.kant@minafoundation.com, github: [@kantp](https://github.com/kantp))
