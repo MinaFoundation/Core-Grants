@@ -19,8 +19,10 @@ On Ethereum, [Lido](https://lido.fi/) is an example LST provider where the compa
 ### Other Recommended Reading
 - [Defending Against LST Monopolies, Callum Waters, NashQueue, Jacob Arluck, Barry Plunkett, and Sam Hart](https://forum.celestia.org/t/defending-against-lst-monopolies/1554)
 - [Mina Liquid Staking Proposal, Staketab Team](https://docs.google.com/document/d/1Lf0JMgAArAavUxs7Ef5RUJfMr2ES6qJNcy10ErGmqiQ/edit?usp=sharing)
+- [RFC-0005: Protocol Upgrade to Enable Automatic Distribution of Delegation Rewards](https://github.com/MinaFoundation/Core-Grants/pull/9)
+  - This RFC focuses on the protocol level, but is interested to watch in case the fundamentals of staking on Mina are updateed
 ## Objectives
-- Attain buy-in from community about the need liquid staking
+- Attain buy-in from community about the need for inflation protection
 - Solicit comments from community leaders, developers, tokenomics experts about requirements and obstacles not addressed in the original RFC
 - Forge a clear path for a successful RFP
 ## Motivation and Rationale
@@ -28,9 +30,8 @@ On Ethereum, [Lido](https://lido.fi/) is an example LST provider where the compa
 ### Token Holder
 As a token holder, I want access to the highest risk-free return to avoid being diluted by inflation.  I also want to be able to move my tokens freely around the Mina ZkApp ecosystem without thinking about putting tokens back in my wallet for the staking snapshot.  I believe that my tokens are mine and eligible for reward payments regardless of whether they are locked in an app chain, L2, ZkApp voting contract, or any other mechanism.  Furthermore, I expect that if I hold Mina in my wallet for 13 days, and on the 14th day I move it to an exchange, I am entitled to 13/14ths of that epoch's staking rewards, even if the staking snapshot was taken on the 14th day.
 ### ZkApp Developer
-As a ZkApp developer, I expect the protocol not to punish users for engaging with my service.  Especially as an app chain which requires locking funds in a contract on the L1, I expect that users in my ecosystem will not miss out on staking rewards for using my app.
-### Staking Pool Operator
-As a staking pool operator, I want a consistently high stake delegated to me by as few individual delegators as possible.
+As a ZkApp developer, I expect the protocol not to punish users for engaging with my service.  Especially as an app chain which requires locking funds in a contract on the L1, I expect that users in my ecosystem will not be penalized for using my app.
+
 ## Open Issues and Discussion Points
 ### One month delegation lag
 The lag between staking and receiving rewards is a critical concern to this discussion.  One idea I've seen proposed is that app chains and zkapps which store funds will simply delegate the funds and pay out their users accordingly.  Essentially they would act as mini LSTs specific to their own app and users.  But with the one-month lag, the zkapp becomes responsible for maintaining a copy of the staking ledger and processing payouts manually.  This procedure is not considered very easy or convenient by existing staking pools.  If an app ignores the staking lag, then bad actors will pile money in before payout time, but after the staking ledger snapshot is taken in order to steal extra rewards.
@@ -45,4 +46,4 @@ Just like DAOs and DEXs, Mina is also lacking a highly-adopted token standard.  
 
 By opening this RFC, I hope to gain insight from block producers, L2 developers and zkapp developers about the feasibility and compatibility of different approaches.
 ## Conclusion
-There is a strong need for LST on Mina, but there is not an obvious trivial implement.  The community ought to dedicate resources to understanding this problem and building a solution.
+There is a strong need for inflation protection on Mina, but there is not an obvious trivial implementation.  The community ought to dedicate resources to understanding this problem and building a solution.
