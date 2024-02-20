@@ -32,7 +32,7 @@ Applicants are encouraged to ask questions and seek clarifications as needed to 
 
 Ensure that all information provided is accurate and complete to best represent your proposal.
 
-**Alliance and Contact Information**
+**Contact Information**
 
 **Team Lead (Main Contact Person):**
 
@@ -89,6 +89,6 @@ What makes you best-suited to execute this project?
   - How does your experience with Mina and the community increase the likelihood of success?
   - [Describe the engagement]
 
-Please ensure that you have reviewed all listed requirements, deliverables, and the provided resources on Alliances to ensure a complete understanding of the RFP's scope and objectives.
+Please ensure that you have reviewed all listed requirements, deliverables, and the provided resources to ensure a complete understanding of the RFP's scope and objectives.
 
 </details>
