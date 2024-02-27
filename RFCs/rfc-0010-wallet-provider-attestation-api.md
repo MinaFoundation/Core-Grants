@@ -12,6 +12,14 @@ The motivation behind extending the Mina wallet provider API stems from the evol
 
 ## Specification
 
+### Requirements
+
+* Private data can’t leave the wallet sandbox
+* No remote code execution in the wallet
+* Work for multiple projects without requiring wallet changes / coordination, so it works over the many different projects and any new private data attestation projects that come up
+* Should tie into nullifiers (to make sure there is an application specific salt)
+
+
 ### API
 Wallets should have a provider API parallel to EIP-1193 but tailored for Mina. The goal of this API extension is to build on top of pre-existing standards. 
 
@@ -24,7 +32,10 @@ Wallets should have a provider API parallel to EIP-1193 but tailored for Mina. T
 
 #### Primary Functionalities:
 The proposed API should empower a Mina wallet to:
+- **Store Credential**: Store credentials to be used by an attestation program.
 - **Request Attestation**: Initiate requests to receive an attestation proof of a claim.
+- **Request Nullifier Key**: Construct a nullifier key, along with an attestation proof about that nullifier key
+
 
 ### Scenario: Requesting Attestation From a Wallet
 #### `mina_requestAttestation`
@@ -64,10 +75,10 @@ When a requester seeks attestation from a wallet, they must provide contextual b
 #### `mina_requestAttestation` Binding Parameters
 
 #### `program`
-A unique identifier or hash representing the provable program the wallet should run internally for attestation. This might correspond to the verification key of the provable program or its hash.
+A unique identifier or hash representing the provable program the wallet should run internally for attestation. Programs will be added via the standards process, and will initially include one program, "flat-credential-attestation".
 
 ### `clientData`
-An adaptable data structure designed to bind the wallet to contextually relevant information. The content and structure of `clientData` are dynamic, tailored to the specific scenario or attestation requirement at hand. It can encapsulate a range of data, from verifiable credentials to custom datasets, based on what the wallet is expected to know when attesting. Given the myriad potential use cases, the shape and constituents of clientData can vary widely. Requesters should structure it based on prior knowledge of the data the wallet is acquainted with, ensuring effective communication and validation during the attestation process.
+An adaptable data structure designed to bind the wallet to contextually relevant information. The content and structure of `clientData` are dynamic, tailored to the specific program.
 
 #### `publicInputs`
 A key-value map detailing the provable-program's method signature for open inputs. Each key-value pair describes a specific input and the value to use in the provable-program; further binding the wallet.
@@ -83,26 +94,11 @@ try {
     // Define the binding for the attestation
     const binding = {
         // The program could be constrained by a unique identifier for the program like a verification key
-        program: "ProvableProgramForRoyaltyClaim",
-        clientData: {
-            "type": ["VerifiableCredential", "ArtOwnershipCredential"],
-            "credentialData": {
-                "issuer": "did:mina:B62sj...owg",
-                "credentialSubject": {
-                    "id": "did:mina:B62rf...kf9",
-                }
-            }
-        },
+        program: "flat-credential-attestation",
+        clientData: {},
         // Define the required public inputs
         publicInputs: {
-            "claim": {
-                "property": "credentialData.credentialSubject.royaltyPercentage",
-                "operation": "eq",
-                "value": "5"
-            },
-            "nonce": {
-                "value": "1"
-            }
+            "verifier": constructVerifierForRoyaltyClaim(),
         },
     };
 
@@ -139,69 +135,6 @@ try {
 }
 ```
 
-### Example Off-Chain Usage -- Request attestation using a provable program for game session keys
-```ts
-import { Mina } from "o1js";
-
-const mina = window.mina;
-
-try {
-    // Define the binding for the attestation
-    const binding = {
-        program: "ProvableProgramForGameSessionKeys",
-        clientData: {
-            "type": ["VerifiableCredential", "GamerCredential"],
-            "credentialData": {
-                "issuer": "did:mina:B62gamerPlatform...owg",
-                "credentialSubject": {
-                    "id": "did:mina:B62player...kf9",
-                    "gameProfile": "Player123"
-                }
-            }
-        },
-        // Define the required public inputs
-        publicInputs: {
-            "claim": {
-                "property": "credentialData.credentialSubject.gameProfile",
-                "operation": "eq",
-                "value": "Player123"
-            },
-            "sessionKey": {
-                "publicKey": "B62gis...jud"
-            },
-            "nonce": {
-                "value": "3"
-            }
-        },
-    };
-
-    // Request attestation using the binding. Wallet will match and verify internally against stored credentials.
-    const attestationProof = await mina.request({
-        method: 'mina_requestAttestation',
-        params: binding
-    });
-
-    // Use the attestation proof to initiate a game session
-    const gameSession = GameAPI.initiateSession({
-        playerProfile: "Player123",
-        attestation: attestationProof
-    });
-
-    if (gameSession.status === "success") {
-        console.log("Game session initiated successfully!");
-    } else {
-        console.error("Failed to initiate game session.");
-    }
-
-} catch (error) {
-    if (error.message.includes('User denied')) {
-        console.error("User denied the attestation request.");
-    } else {
-        console.error(`Error while initiating game session: ${error.message}`);
-    }
-}
-```
-
 ## User Journey 
 
 In this example user journey, an `Wallet` attests that they know some private data (e.g. a credential stating the user is over 18) that satisfies some constraints as defined by a specific zk-program and provides this attestation to a `zkApp`.
@@ -223,6 +156,62 @@ sequenceDiagram
 ```
 
 **Note: All interactions with the zkApp are done client-side**
+
+## `Flat-Credential-Attestation` Program
+
+This is the initial program included with the private attestation API.
+
+Data stored should be in the following format:
+
+```
+{
+    ("field": String): (Value: Any[Date, Field, UInt32, ECDSA Signature, String, ...])
+    ...
+}
+```
+
+A small DSL should be built for returning a boolean from simple manipulations of flat credential objects. For example (from the zkPassport RFC):
+
+Credential:
+```
+{
+    documentExpiryDate: (Jan 01 2028: Date),
+    dateOfBirth: (Jan 01 2000: Date),
+    nationality: ("USA": String),
+    firstName: ("Alice": String),
+    ...
+    credentialHash: ("xb82818...": SHA256Hash),
+    credentialHashSignature: ("ntn838...": PassportSignature),
+}
+```
+
+Program:
+```
+let verifier = new FlatCredentialVerifier();
+const hash = verifier.sha256Hash([ verifier.field('nationality'), ... ]);
+verifier = verifier.checkEqual('credentialHash', hash);
+verifier = verifier.verifySignature('credentialHashSignature', verifier.field('credentialHash'), countryPublicKey);
+verifier = verifier.checkEqual('nationality', 'USA')
+const zkProof = AttestationAPI.createAttestation(verifier);
+```
+
+## Use with Nullifiers
+
+**Request Nullifier Key** should also accept a small DSL which allows the construction of unique identifiers, proofs about that unique identifier, and a salt.
+
+For example, using the same credential as above:
+
+```
+let verifier = new FlatCredentialVerifier();
+const credentialHash = verifier.sha256Hash([ verifier.field('nationality'), ... ]);
+verifier = verifier.checkEqual('credentialHash', credentialHash);
+verifier = verifier.verifySignature('credentialHashSignature', verifier.field('credentialHash'), countryPublicKey);
+verifier = verifier.checkEqual('nationality', 'USA')
+
+requestNullifierKeyAndProof(credentialHash, verifier, applicationSalt)
+```
+
+With **requestNullifierKeyAndProof** returning `hash(credentialHash, applicationSalt)`, along with a proof that the hash was constructed correctly, and credentialHash passes the `verifier` claim.
 
 ## Backwards Compatibility
 
@@ -250,3 +239,6 @@ If a user produces an attestation (i.e. a proof object) that proof, if provided 
 - **Limited Lifetime**: Implementations could consider a mechanism where objects have a limited validity period, reducing the impact of potential breaches.
 - **Unique Attestation Identifiers**: Include unique identifiers in each attestation. This ensures that each proof object is distinct and cannot be reused in different contexts.
 
+## Future Work
+
+Future work may want to consider other data sources, such as storing data in remote storage, encrypted with a private key in the users wallet.
