@@ -1,4 +1,4 @@
-# RFC-0010: Wallet Provider Attestation API
+# RFC-0010: Wallet Provider Private Attestation API
 
 - **Intent**: Introduces an extension to the wallet provider API that allows the wallet to perform private attestations.
 - **Submitted by**: Theodore Pender (Github: @teddyjfpender, email: theodore.pender@minaprotocol.com, Twitter/X: @franklyteddy)
