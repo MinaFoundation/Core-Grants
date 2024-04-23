@@ -19,6 +19,6 @@ Your innovative solutions could receive grants from Mina Foundation, subject to 
 Ready to make an impact? Check out our [Project Board](https://github.com/orgs/MinaFoundation/projects/7) for all open grants. Submit your proposal directly under the relevant issue, and ensure to follow our [proposal submission form template](./RFPs/rfp-0001-standard-template.md) for completeness.
 
 ## Have Questions or Want to Discuss?
-Join our vibrant community on our dedicated [Discord Channel](https://discord.gg/minaprotocol) for all your queries and discussions. We're here to support your journey every step of the way!
+Join our vibrant community on our dedicated [Discord Channel](https://discord.com/channels/484437221055922177/1179028359422935090) for all your queries and discussions. We're here to support your journey every step of the way!
 
 If you have an idea but want to elicit preliminary feedback from the community, the [Mina Research Forum](https://forums.minaprotocol.com/) is a fantastic place to share and discuss your thoughts, gather insights, and engage with knowledgeable members who are passionate about Mina and its development.
