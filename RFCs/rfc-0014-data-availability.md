@@ -1,8 +1,8 @@
-# RFC-0011: Data Availability Integration into Mina
+# RFC-0014: Data Availability Integration into Mina
 
 - **Intent**: To highlight the importance of including a DA (data availability) layer inside Mina and describe the possible methods of achieving such integration.
 - **Submitted by**: Yunus Gürlek (GitHub: @yunus433, Email: yunus.gurlek@minaprotocol.com, Twitter: @yunusguerlek)
-- **Submitted on**: Thursday, April 18, 2024
+- **Submitted on**: Tuesday, April 23, 2024
 
 ## Abstract
 
