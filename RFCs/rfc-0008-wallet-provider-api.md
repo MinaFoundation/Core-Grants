@@ -175,7 +175,7 @@ Provider.request({
 ```
 
 #### mina_chainInformation
-Returns both the chain ID and an informative name of the chain
+Returns both the chain ID and an informative name of the chain. The name should follow the [CAIP-2 specification for Mina](https://github.com/ChainAgnostic/namespaces/blob/main/mina/caip2.md#test-cases).
 
 ##### Parameters
 None
