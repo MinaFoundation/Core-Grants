@@ -174,6 +174,20 @@ Provider.request({
 }): Promise<string>;
 ```
 
+#### mina_chainInformation
+Returns both the chain ID and an informative name of the chain
+
+##### Parameters
+None
+
+##### Returns
+```typescript
+type AddChainArgs = {
+   readonly url: string;
+   readonly name: string;
+};
+```
+
 #### mina_sign
 Returns a signed message.
 
@@ -209,12 +223,9 @@ Returns a signed message.
 
 ```typescript
 type SignedFieldsData = {
-    publicKey: string;
-    data: (string | number)[];
-    signature: {
-        field: string;
-        scalar: string;
-    };
+  data: (string | number)[];
+  publicKey:string;
+  signature: string;
 };
 
 Provider.request({
@@ -254,7 +265,7 @@ type TransactionReceipt = {
 
 Provider.request({
     method: 'mina_sendTransaction',
-    params: { signedTransaction: signedTx, transactionBody: txBody, transactionType: 'payment'}
+    params: { unsignedTransaction: unsignedTx, transactionBody: txBody, transactionType: 'payment'}
 }): Promise<TransactionReceipt>
 ```
 #### mina_getBalance
@@ -297,6 +308,40 @@ Provider.request({
 }): Promise<Nullifier>
 ```
 
+#### mina_switchChain
+
+##### Parameters
+```typescript
+type SwitchChainArgs = {
+   readonly chainId: string;
+};
+```
+
+##### Returns
+```typescript
+type AddChainArgs = {
+   readonly url: string;
+   readonly name: string;
+};
+```
+
+#### mina_addChain
+
+##### Parameters
+```typescript
+type AddChainArgs = {
+   readonly url: string;
+   readonly name: string;
+};
+```
+
+##### Returns
+```typescript
+type AddChainArgs = {
+   readonly url: string;
+   readonly name: string;
+};
+```
 
 ## Appendix I: Consumer-Facing API Documentation
 
