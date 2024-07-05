@@ -1,4 +1,4 @@
-# RFC-0009: Wallet Provider Private Attestation API
+# RFC-0009: Private Credential Standard
 
 ## Abstract
 
