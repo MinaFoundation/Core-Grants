@@ -12,6 +12,14 @@ When scanned via a trusted mobile app, users can confidently produce a ZK Proof 
 
 It's important to note that different issuer countries use different signature algorithms.
 
+
+### What can be proven ?
+
+All the following properties can be attested for with expection of any fingerprints, iris scans or any biometric data. Its even possible to attest for the passport photo.
+
+![alt text](./images/what_can_be_proven_passport.png)
+
+
 ### Specification
 
 Generating a proof will involve multiple steps:
@@ -28,7 +36,7 @@ Once the proof is generated, the user can register on-chain and their commitment
 
 As the hash function and signature algorithm differ upon the issuer country, there will be a need for a single circuit which must support many different fucntions or sperate circuits per country. However one verifier for each register circuit will be deployed on-chain, all of them committing to the same Merkle tree.
 
-### Storing the Merkle Tree Using Offchain Storage
+##### Storing the Merkle Tree Using Offchain Storage
 
 To ensure the Merkle tree containing key-value pairs of users' public keys and commitments is publicly accessible, we must maintain the following:
 
@@ -37,92 +45,6 @@ To ensure the Merkle tree containing key-value pairs of users' public keys and c
 3. Decentralization to ensure trustlessness and resilience
 
 We can achieve this using [Mina's Offchain Storage API](https://docs.minaprotocol.com/zkapps/writing-a-zkapp/feature-overview/offchain-storage). Below is a solution utilizing this API to store and manage the Merkle tree.
-
-#### Utilizing Offchain Storage
-
-1. **Set up Offchain Storage**:
-   First, import the necessary components from the `o1js` library.
-
-   ```javascript
-   import { Experimental } from 'o1js';
-
-   const { OffchainState, OffchainStateCommitments } = Experimental;
-   ```
-
-2. **Define Offchain State Configuration**:
-   Define the configuration for the Offchain state, including the key-value map for the Merkle tree.
-
-   ```javascript
-   const offchainState = OffchainState({
-     merkleTree: OffchainState.Map(PublicKey, Commitment),
-   });
-
-   class StateProof extends offchainState.Proof {}
-   ```
-
-3. **Set up the Smart Contract**:
-   Initialize the smart contract and assign it to the Offchain storage. This will compile the recursive Offchain zkProgram in the background and assign the Offchain state to the smart contract instance.
-
-   ```javascript
-   let contract = new MyContract(contractAddress);
-   offchainState.setContractInstance(contract);
-
-   // Compile Offchain state program
-   await offchainState.compile();
-   // Compile smart contract
-   await MyContract.compile();
-   ```
-
-4. **Settle Offchain State**:
-   To settle the offchain state, generate an Offchain storage proof and provide it to the smart contract's `settle` method.
-
-   ```javascript
-   let proof = await offchainState.createSettlementProof();
-
-   await Mina.transaction(sender, () => {
-     // Settle all outstanding state changes
-     contract.settle(proof);
-   })
-     .sign([sender.key])
-     .prove()
-     .send();
-   ```
-
-5. **Configure Smart Contract**:
-   The smart contract requires a field containing a commitment to the offchain state. This field is used internally by the OffchainState methods and should not be written to by your smart contract logic.
-
-   ```javascript
-   class MyContract extends SmartContract {
-     @state(OffchainStateCommitments) offchainState = State(
-       OffchainStateCommitments.empty()
-     );
-
-     @method
-     async settle(proof: StateProof) {
-       await offchainState.settle(proof);
-     }
-   }
-   ```
-
-6. **Using Offchain Storage**:
-   Now, developers can utilize Offchain storage in any of their smart contract methods. Below is an example of how to use the Offchain storage to update the Merkle tree.
-
-   ```javascript
-   class MyContract extends SmartContract {
-     @method
-     async updateMerkleTree(publicKey: PublicKey, commitment: Commitment) {
-       // Retrieve the current state of the Merkle tree entry for the public key
-       let commitmentOption = await offchainState.fields.merkleTree.get(publicKey);
-
-       // Update the Merkle tree with the new commitment
-       offchainState.fields.merkleTree.update(publicKey, {
-         from: commitmentOption,
-         to: commitment,
-       });
-     }
-   }
-   ```
-
 
 ### Disclose Circuit
 
@@ -140,8 +62,14 @@ Any application that wants to use Proof of Passport can actually build its own d
 
 ### Use Case Scenarios
 
-1. **Financial Services**: A user can prove their identity to a bank without revealing their actual age, nationality, or other sensitive data, thereby complying with KYC requirements while maintaining privacy.
+### Residency Verification for Regional Services
 
-2. **Healthcare**: Patients can prove their eligibility for age-specific healthcare services without disclosing their exact date of birth.
+| Aspect           | Description |
+|------------------|-------------|
+| **Description**  | A zkApp wants a user to prove they reside in a specific region to access local government services or region-specific content. |
+| **Requirements** | An implementation of zkPassport in the Attestation API Standard. |
+| **Expected Outcome** | Users can prove their residency without revealing their exact address or any other personal information. |
+| **Impact Analysis** | This would facilitate the delivery of region-specific services like voting in local elections, accessing regional healthcare, or streaming region-locked content, while maintaining user privacy. |
 
-3. **Online Services**: Users can verify their identity to access age-restricted online services without exposing their full identity details.
+
+The ZK Passport attestaion can also be combine with other sorts of proofs to create more complex attestations.
