@@ -1,0 +1,63 @@
+# RFC-0001: [Atlaspad Launchpad]
+
+- Objective: 
+By integrating zkPass into launchpad, we aim to provide secure, privacy-preserving verification solutions in decentralised finance (DeFi) and centralised finance (CeFi) ecosystems. By utilising Zero Knowledge Proofs (ZKP) and Multi-Party Computation (MPC) technologies, we will enable users to authenticate without revealing their credentials, thereby preventing identity theft and fraud, increasing user privacy, and facilitating KYC/AML compliance. This integration will improve the reliability and efficiency of our launchpad by increasing the security and privacy of our users.
+
+Posted by
+
+Name : Berk Cicek 
+Mail : cckberk@gmail.com | team@atlaspad.io
+Discord : dr.drachenmeister
+
+15.07.2024
+
+## Summary
+
+ Atlaspad is an EVM-based multichain launchpad platform designed to manage the pre-investment processes of projects in a transparent, secure and user-friendly way. ZkPass integration will increase the security and compliance of the platform by improving user verification processes.
+
+## Introduction
+
+Atlaspad offers an innovative platform for managing early-stage investments in crypto projects. Secure and compliant user verification processes are vital for the platform to be successful. ZkPass provides an ideal solution to manage these verification processes in a secure, efficient and user-friendly manner.
+
+- **Problem or Opportunity that RFC Addresses**: Current KYC processes are complex, time-consuming and can negatively impact the user experience. This can increase the risk of identity theft and fraud and reduce user satisfaction.
+- Relevance and Importance to the Mina Ecosystem**: ZkPass' secure KYC solutions can play an important role in ensuring security and user authentication in the Mina ecosystem. This solution is aligned with Mina's security and privacy objectives and can enhance the overall security of the ecosystem.
+
+## Objectives
+
+- To provide ZkPass KYC integration to the Atlaspad platform.
+- To make user verification processes secure and compliant with regulations.
+- To improve the user experience.
+- Support the platform to fully comply with regulatory requirements.
+
+## Motivation and Rationale
+
+### Analysing Current Challenges
+
+- Identity Theft and Fraud**: With the growth of digital finance, identity theft and fraud have become pervasive issues, causing significant financial losses and reputational damage for organisations and individuals.
+- **Privacy Concerns**: Users are increasingly concerned about protecting their sensitive data, such as personal and financial information, when interacting with financial institutions and services.
+- KYC & AML Compliance**: Financial institutions face the challenge of complying with Know Your Customer (KYC) and Anti-Money Laundering (AML) regulations while minimising user friction and protecting privacy.
+- **Interoperability**: Bridging the gap between DeFi and CeFi platforms requires a compliant and secure identity solution that can be seamlessly integrated into various financial applications.
+
+### Insights from Related Research and Data
+
+- The growing demand for secure and user-friendly KYC solutions can improve the user experience while increasing the security and compatibility of platforms.
+- Zero Knowledge Proofs (ZKP) and Multi-Party Computation (MPC) technologies ensure the security of the authentication process while protecting the privacy of user data.
+
+#### Links to Goals or Priorities
+
+- ZkPass integration will help Atlaspad achieve its security and user experience goals.
+- By minimising user friction, it ensures that our platform is user-friendly and reliable.
+- ZkPass' compliance features support Atlaspad to fully comply with KYC and AML regulations.
+
+## Scenarios and Use Cases
+
+### Example Scenario 1: Secure KYC Process
+
+| Element | Description |
+| --- | --- |
+| Description | Users are required to go through an authentication process when registering on the Atlaspad platform. This process is critical to prevent identity theft and fraud. |
+| Requirements | ZkPass must protect the privacy of personal data while verifying user credentials and must not negatively impact the user experience. |
+| | Expected Outcome | Users can securely verify their identity through ZkPass, while their personal data is protected. The platform offers a secure and regulated KYC process. |
+| Impact Analysis | The integration of ZkPass increases the security of authentication processes, while positively impacting user satisfaction and the platform's reputation. |
+
+Translated with DeepL.com (free version)
